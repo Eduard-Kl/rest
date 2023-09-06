@@ -1,6 +1,7 @@
 PostgreSQL database setup:
 ```sql
 CREATE DATABASE rest;
+CREATE ROLE rest WITH LOGIN PASSWORD 'tajnasifra';
 
 CREATE TABLE product (
     id INTEGER primary key generated always as identity,
