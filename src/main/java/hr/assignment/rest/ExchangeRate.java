@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -25,7 +24,7 @@ public class ExchangeRate {
         try {
             JSONObject data = fetch("https://api.hnb.hr/tecajn-eur/v3?valuta=USD");
             BigDecimal exchangeRate = (BigDecimal) decimalFormat.parse((String) data.get("srednji_tecaj"));
-            return valueEur.divide(exchangeRate, 2, RoundingMode.HALF_UP);
+            return valueEur.multiply(exchangeRate);
         } catch (JSONException | IOException | NumberFormatException | ArithmeticException | ParseException e) {
             return BigDecimal.ZERO;
         }
