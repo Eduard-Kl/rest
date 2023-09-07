@@ -1,8 +1,6 @@
 package hr.assignment.rest;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -10,14 +8,30 @@ import java.math.BigDecimal;
 @Table(name = "product")
 public class Product {
 
-    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false, updatable=false)
     private int id;
+
+    @Id
+    @Column(name = "code", nullable = false)
     private String code;
+
+    @Column(name = "name")
     private String name;
-    private BigDecimal price_eur;;
+
+    @Column(name = "price_eur")
+    private BigDecimal price_eur;
+
+    @Column(name = "price_usd")
     private BigDecimal price_usd;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "is_available")
     private boolean is_available;
+
+    public Product() {}
 
     public Product(int id, String code, String name, BigDecimal price_eur, BigDecimal price_usd, String description, boolean is_available) {
         this.id = id;
